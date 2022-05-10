@@ -57,6 +57,7 @@ def main():
             ^\./var/cache/.* |
 
             # These leak from the host
+            # See https://gitlab.mister-muffin.de/josch/mmdebstrap/issues/26
             ^\./etc/resolv.conf$ |
             ^\./etc/hostname$ |
 
