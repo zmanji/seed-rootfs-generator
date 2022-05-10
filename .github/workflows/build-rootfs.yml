@@ -1,7 +1,7 @@
 on:
-  - push
-  - branches:    
-    - main
+  push:
+    branches:
+      - main
 jobs:
   build-root-fs-and-publish:
     # TODO(zmanji): Switch this to a 22.04 image and use the packaged mmdebstrap
