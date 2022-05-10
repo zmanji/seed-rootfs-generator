@@ -23,7 +23,7 @@ def main():
                     "--variant=buildd",
                     # Note cannot use unshare on github actions inside a docker
                     # container ?
-                    "--include=python3,cmake,ninja-build",
+                    "--include=python3,cmake,ninja-build,ca-certificates",
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
