@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       # Get mmdebstrap
-      - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | | tar -xz
+      - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: ./build.py
       - name: Bump version and push tag
         id: tag_version
