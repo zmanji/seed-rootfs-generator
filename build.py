@@ -25,8 +25,6 @@ def main():
                     # container ?
                     "--include=python3,cmake,ninja-build",
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
-                    '--aptopt=APT::Get::Install-Recommends "false"',
-                    '--aptopt=APT::Get::Install-Suggests "false"',
                     "bullseye",
                     tfile,
                     "deb https://debian.notset.fr/snapshot/archive/debian/20220506T205402Z/ bullseye main",
