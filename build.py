@@ -85,7 +85,6 @@ def main():
 
             new.close()
         except subprocess.CalledProcessError as e:
-            print("Oh no...")
             print(e.stderr)
             raise
 
