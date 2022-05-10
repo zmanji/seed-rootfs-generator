@@ -19,11 +19,11 @@ def main():
             print("running mmdebstrap...")
             p = subprocess.run(
                 [
-                    "/usr/bin/mmdebstrap",
+                    "./mmdebstrap/mmdebstrap",
                     "--variant=buildd",
                     "--mode=unshare",
                     "--include=python3,cmake,ninja-build",
-                    "--hook-dir=/usr/share/mmdebstrap/hooks/eatmydata",
+                    "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
                     "deb https://debian.notset.fr/snapshot/archive/debian/20220506T205402Z/ bullseye main",
