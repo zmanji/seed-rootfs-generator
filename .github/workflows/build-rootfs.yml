@@ -4,14 +4,11 @@ on:
       - main
 jobs:
   build-root-fs-and-publish:
-    # TODO(zmanji): Switch this to a 22.04 image and use the packaged mmdebstrap
-    # when the image is available. 0.7.5 is the latest version that can run on 
-#   # 20.04
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       # Get mmdebstrap
-      - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.7.5.tar.gz' | tar -xz
+      - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
       - run: ./build.py
       - name: Bump version and push tag
