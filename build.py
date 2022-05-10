@@ -10,7 +10,7 @@ import tarfile
 from pathlib import Path
 
 
-def build_rootfs():
+def main():
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
         e = os.environ.copy()
@@ -81,10 +81,6 @@ def build_rootfs():
             print("Oh no...")
             print(e.stderr)
             raise
-
-
-def main():
-    rootfs = build_rootfs()
 
 
 if __name__ == "__main__":
