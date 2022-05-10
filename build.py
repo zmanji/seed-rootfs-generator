@@ -37,8 +37,8 @@ def main():
             )
             original = tarfile.open(name=tfile)
             new = tarfile.open(
-                name="./rootfs.tar",
-                mode="x:",
+                name="./rootfs.tar.gz",
+                mode="x:gz",
                 errorlevel=2,
                 format=tarfile.PAX_FORMAT,
             )
