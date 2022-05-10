@@ -23,8 +23,9 @@ def main():
                     "--variant=buildd",
                     "--mode=unshare",
                     "--include=python3,cmake,ninja-build",
-                    "--include=debian-archive-keyring,ca-certificates",
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
+                    '--aptopt=APT::Get::Install-Recommends "false"',
+                    '--aptopt=APT::Get::Install-Suggests "false"',
                     "bullseye",
                     tfile,
                     "deb https://debian.notset.fr/snapshot/archive/debian/20220506T205402Z/ bullseye main",
@@ -54,6 +55,11 @@ def main():
             ^\./usr/share/lintian/.* |
             ^\./usr/share/zoneinfo/right/.* |
             ^\./usr/share/cmake-.*/Help/.* |
+            ^\./var/cache/.* |
+
+            # These leak from the host
+            ^\./etc/resolv.conf$ |
+            ^\./etc/hostname$ |
 
             # Safe because will never run systemd
             ^\./var/lib/systemd/.* |
