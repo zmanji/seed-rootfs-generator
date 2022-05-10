@@ -23,6 +23,7 @@ def main():
                     "--variant=buildd",
                     "--mode=unshare",
                     "--include=python3,cmake,ninja-build",
+                    "--include=debian-archive-keyring,ca-certificates",
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
@@ -36,8 +37,8 @@ def main():
             )
             original = tarfile.open(name=tfile)
             new = tarfile.open(
-                name="./rootfs.tar.gz",
-                mode="x:gz",
+                name="./rootfs.tar",
+                mode="x:",
                 errorlevel=2,
                 format=tarfile.PAX_FORMAT,
             )
