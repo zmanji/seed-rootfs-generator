@@ -21,7 +21,8 @@ def main():
                 [
                     "./mmdebstrap/mmdebstrap",
                     "--variant=buildd",
-                    "--mode=unshare",
+                    # Note cannot use unshare on github actions inside a docker
+                    # container ?
                     "--include=python3,cmake,ninja-build",
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     '--aptopt=APT::Get::Install-Recommends "false"',

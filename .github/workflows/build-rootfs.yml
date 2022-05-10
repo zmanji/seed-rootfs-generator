@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - run: sudo apt install uidmap
       # Get mmdebstrap
       - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
