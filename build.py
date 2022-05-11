@@ -27,7 +27,7 @@ def main():
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
-                    "deb https://debian.notset.fr/snapshot/archive/debian/20220506T205402Z/ bullseye main",
+                    "deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main",
                 ],
                 capture_output=True,
                 stdin=subprocess.DEVNULL,
