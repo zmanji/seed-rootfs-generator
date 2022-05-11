@@ -4,6 +4,7 @@ import io
 import re
 import os
 import hashlib
+import gzip
 import subprocess
 import tempfile
 import tarfile
@@ -36,9 +37,13 @@ def main():
                 env=e,
             )
             original = tarfile.open(name=tfile)
+            # NOTE: asking tarfile to make a tar.gz is not reproducible, it
+            # writes the mtime. Have to use the gzip module directly to avoid
+            # this 
+            buffer = io.BytesIO()
+            newunderlying = gzip.GzipFile(filename="rootfs.tar", mode="wb", fileobj=buffer, mtime=0)
             new = tarfile.open(
-                name="./rootfs.tar.gz",
-                mode="x:gz",
+                fileobj=newunderlying,
                 errorlevel=2,
                 format=tarfile.PAX_FORMAT,
             )
@@ -84,6 +89,9 @@ def main():
                 new.addfile(i, f)
 
             new.close()
+            newunderlying.close()
+
+            Path("./rootfs.tar.gz").write_bytes(buffer)
         except subprocess.CalledProcessError as e:
             print(e.stderr)
             raise
