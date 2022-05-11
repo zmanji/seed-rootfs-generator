@@ -11,7 +11,7 @@ jobs:
       - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
       - run: sudo ./build.py
-      - run: cat rootfs.tar.gz | gunzip | zstd -15 -T0 > rootfs.tar.zst
+      - run: gunzip -k rootfs.tar.gz && zstd -15 -T0 --content-size --rm rootfs.tar
 
       - run: ./printnotes.py rootfs.tar.gz > notes
       - run: echo >> notes
