@@ -11,7 +11,11 @@ jobs:
       - run: curl 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
       - run: sudo ./build.py
+      - run: cat rootfs.tar.gz | gunzip | zstd -15 -T0 > rootfs.tar.zst
+
       - run: ./printnotes.py rootfs.tar.gz > notes
+      - run: echo >> notes
+      - run: ./printnotes.py rootfs.tar.zst >> notes
 
       - name: Bump version and push tag
         id: tag_version
@@ -24,5 +28,7 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body_path: ./notes
-          files: rootfs.tar.gz
+          files: |
+            rootfs.tar.gz
+            rootfs.tar.zst
 
