@@ -44,6 +44,7 @@ def main():
             newunderlying = gzip.GzipFile(filename="rootfs.tar", mode="wb", fileobj=buffer, mtime=0)
             new = tarfile.open(
                 fileobj=newunderlying,
+                mode="w:",
                 errorlevel=2,
                 format=tarfile.PAX_FORMAT,
             )
