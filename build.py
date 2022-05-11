@@ -92,7 +92,7 @@ def main():
             new.close()
             newunderlying.close()
 
-            Path("./rootfs.tar.gz").write_bytes(buffer)
+            Path("./rootfs.tar.gz").write_bytes(buffer.getvalue())
         except subprocess.CalledProcessError as e:
             print(e.stderr)
             raise
