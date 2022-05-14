@@ -21,7 +21,7 @@ def main():
         tfile = tdir + "/bullseye.tar"
 
         sources = Path(tdir + "/sources.list")
-        sources.write_bytes(APT_SOURCE)
+        sources.write_bytes(APT_SOURCE.encode())
 
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
