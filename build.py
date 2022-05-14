@@ -19,6 +19,10 @@ deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 def main():
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
+
+        sources = Path(tdir + "/sources.list")
+        sources.write_bytes(APT_SOURCE)
+
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
         try:
@@ -33,7 +37,7 @@ def main():
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
-                    APT_SOURCE,
+                    str(sources),
                 ],
                 capture_output=True,
                 stdin=subprocess.DEVNULL,
