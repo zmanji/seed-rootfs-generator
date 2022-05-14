@@ -102,7 +102,6 @@ def main():
             pyzstd.CParameter.compressionLevel: 15,
             pyzstd.CParameter.contentSizeFlag: 1,
             pyzstd.CParameter.checksumFlag: 1,
-            pyzstd.CParameter.nbWorkers: os.cpu_count(),
         }
         Path("./rootfs.tar.zst").write_bytes(
             pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
