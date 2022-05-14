@@ -11,7 +11,7 @@ import tarfile
 from pathlib import Path
 
 APT_SOURCE = """
-deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main
+# deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main
 deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 """
 
