@@ -1,0 +1,86 @@
+{
+  "allow_builds": false,
+  "allow_prereleases": false,
+  "allow_wheels": true,
+  "build_isolation": true,
+  "constraints": [],
+  "locked_resolves": [
+    {
+      "locked_requirements": [
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "7a4cf8bec3d73a40f4291acb27a1f5358dca403401ab1fa76e6251f2d9910c8a",
+              "url": "https://github.com/zmanji/pyzstd-wheel-builder/releases/download/v0.0.6/pyzstd-0.15.2-cp310-cp310-linux_x86_64.whl"
+            }
+          ],
+          "project_name": "pyzstd",
+          "requires_dists": [],
+          "requires_python": ">=3.5",
+          "version": "0.15.2"
+        }
+      ],
+      "platform_tag": [
+        "cp310",
+        "cp310",
+        "linux_x86_64"
+      ]
+    },
+    {
+      "locked_requirements": [
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "ae8a00f1c3269d25b5008507aa0b61b280546ea787a80dae19451b5998e550e0",
+              "url": "https://github.com/zmanji/pyzstd-wheel-builder/releases/download/v0.0.6/pyzstd-0.15.2-cp38-cp38-linux_x86_64.whl"
+            }
+          ],
+          "project_name": "pyzstd",
+          "requires_dists": [],
+          "requires_python": ">=3.5",
+          "version": "0.15.2"
+        }
+      ],
+      "platform_tag": [
+        "cp38",
+        "cp38",
+        "linux_x86_64"
+      ]
+    },
+    {
+      "locked_requirements": [
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "142069a4a86f31ccb1edf5488172e71e3a4d6b8b1ce8f1ecba43571b8a00b319",
+              "url": "https://github.com/zmanji/pyzstd-wheel-builder/releases/download/v0.0.6/pyzstd-0.15.2-cp39-cp39-linux_x86_64.whl"
+            }
+          ],
+          "project_name": "pyzstd",
+          "requires_dists": [],
+          "requires_python": ">=3.5",
+          "version": "0.15.2"
+        }
+      ],
+      "platform_tag": [
+        "cp39",
+        "cp39",
+        "linux_x86_64"
+      ]
+    }
+  ],
+  "path_mappings": {},
+  "pex_version": "2.1.86",
+  "prefer_older_binary": false,
+  "requirements": [
+    "pyzstd"
+  ],
+  "requires_python": [],
+  "resolver_version": "pip-2020-resolver",
+  "style": "strict",
+  "transitive": true,
+  "use_pep517": null
+}
