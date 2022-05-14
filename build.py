@@ -10,6 +10,8 @@ import tempfile
 import tarfile
 from pathlib import Path
 
+import pyzstd
+
 # TODO(zmanji): Use mirror:// protocol of apt
 APT_SOURCE = """
 # deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main
@@ -45,13 +47,9 @@ def main():
             env=e,
         )
         original = tarfile.open(name=tfile)
-        # NOTE: asking tarfile to make a tar.gz is not reproducible, it
-        # writes the mtime. Have to use the gzip module directly to avoid
-        # this 
         buffer = io.BytesIO()
-        newunderlying = gzip.GzipFile(filename="rootfs.tar", mode="wb", fileobj=buffer, mtime=0)
         new = tarfile.open(
-            fileobj=newunderlying,
+            fileobj=buffer,
             mode="w:",
             errorlevel=2,
             format=tarfile.PAX_FORMAT,
@@ -100,7 +98,15 @@ def main():
         new.close()
         newunderlying.close()
 
-        Path("./rootfs.tar.gz").write_bytes(buffer.getvalue())
+        d = {
+            pyzstd.CParameter.compressionLevel: 15,
+            pyzstd.CParameter.contentSizeFlag: 1,
+            pyzstd.CParameter.checksumFlag: 1,
+            pyzstd.CParameter.nbWorkers: os.cpu_count(),
+        }
+        Path("./rootfs.tar.zst").write_bytes(
+            pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
+        )
 
 
 if __name__ == "__main__":

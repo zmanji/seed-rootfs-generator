@@ -16,12 +16,7 @@ jobs:
       - run: curl -L 'https://github.com/pantsbuild/pex/releases/download/v2.1.86/pex' > pex && chmod +x pex
       - run: ./pex --lock pex.lock --venv --include-tools -o venv.pex && PEX_TOOLS=1 ./venv.pex venv ./venv && rm ./venv.pex
       - run: sudo ./venv/bin/python3 ./build.py
-      - run: gunzip -k rootfs.tar.gz && zstd -15 -T0 --content-size --rm rootfs.tar
-
-      - run: ./printnotes.py rootfs.tar.gz > notes
-      - run: echo >> notes
-      - run: ./printnotes.py rootfs.tar.zst >> notes
-
+      - run: ./venv/bin/python3 ./printnotes.py rootfs.tar.zst > notes
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
