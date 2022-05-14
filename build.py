@@ -10,6 +10,11 @@ import tempfile
 import tarfile
 from pathlib import Path
 
+APT_SOURCE = """
+deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main
+deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
+"""
+
 
 def main():
     with tempfile.TemporaryDirectory() as tdir:
@@ -28,7 +33,7 @@ def main():
                     "--hook-dir=./mmdebstrap/hooks/eatmydata",
                     "bullseye",
                     tfile,
-                    "deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main",
+                    APT_SOURCE,
                 ],
                 capture_output=True,
                 stdin=subprocess.DEVNULL,
