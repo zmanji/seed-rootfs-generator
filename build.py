@@ -44,7 +44,6 @@ def main():
                 "--customize-hook=copy-out /var/cache/apt/archives/ " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
-                "--mode=root",
                 "--include=python3,cmake,ninja-build,ca-certificates",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",

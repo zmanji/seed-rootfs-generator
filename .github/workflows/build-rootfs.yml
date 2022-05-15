@@ -35,7 +35,7 @@ jobs:
       # Get pex and create venv from lock file
       - run: curl -L 'https://github.com/pantsbuild/pex/releases/download/v2.1.86/pex' > pex && chmod +x pex
       - run: ./pex -v --lock pex.lock --venv --include-tools -o venv.pex && PEX_TOOLS=1 ./venv.pex venv ./venv && rm ./venv.pex
-      - run: sudo ./venv/bin/python3 ./build.py
+      - run: ./venv/bin/python3 ./build.py
       - name: inspect deb cache
         run: ls -lah ./deb-cache
       - run: ./venv/bin/python3 ./printnotes.py rootfs.tar.zst > notes
