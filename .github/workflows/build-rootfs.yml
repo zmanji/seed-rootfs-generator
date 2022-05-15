@@ -16,7 +16,7 @@ jobs:
         run: mkdir -p ./deb-cache/
 
       - name: install packages
-        run: sudo apt install fakechroot fakeroot tree
+        run: sudo apt install tree
 
       - name: Cache deb files
         id: cache-debs

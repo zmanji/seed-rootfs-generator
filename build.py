@@ -33,6 +33,7 @@ def main():
         print("running mmdebstrap...")
         p = subprocess.run(
             [
+                "sudo",
                 "./mmdebstrap/mmdebstrap",
                 "--verbose",
                 # Machinery to preserve the .debs downloaded so they can be
