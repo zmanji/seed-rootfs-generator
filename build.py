@@ -40,16 +40,15 @@ def main():
                 "./mmdebstrap/mmdebstrap",
                 "--verbose",
                 # Machinery to preserve the .debs downloaded so they can be
-                # synced in the cache
-                "--skip=download/empty",
+                # synced in the cache. This doesn't preserve 'essential' debs but good
+                # enough for a speedup.
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=ls -lah \"$1\"/var/cache/apt/archives/",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
-                "--variant=apt",
-                "--include=build-essential,python3,cmake,ninja-build,ca-certificates",
-                "--include=?priority(required)",
+                "--variant=buildd",
+                "--include=python3,cmake,ninja-build,ca-certificates",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",
                 tfile,
