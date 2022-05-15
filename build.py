@@ -38,7 +38,7 @@ def main():
             [
                 "sudo",
                 "./mmdebstrap/mmdebstrap",
-                "--verbose",
+                "--debug",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache
                 "--skip=download/empty",
