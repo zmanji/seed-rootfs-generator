@@ -38,7 +38,7 @@ def main():
                 "--verbose",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache
-                #              "--skip=download/empty",
+                "--skip=download/empty",
                 "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
