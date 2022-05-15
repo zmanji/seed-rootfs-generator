@@ -28,7 +28,6 @@ jobs:
             deb-cache-v3-
 
       - run: tree ./deb-cache/
-      - run: rm -rf ./deb-cache/*
 
       # Import Debian Bullseye Key 0x605C66F00D6C9793 for apt on Ubuntu to
       # verify packages
