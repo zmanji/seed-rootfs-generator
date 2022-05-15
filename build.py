@@ -37,6 +37,7 @@ def main():
                 # synced in the cache
                 "--skip=download/empty",
                 "--skip=essential/unlink",
+                "--setup-hook='mkdir -p $1/var/cache/apt/archives/'",
                 "--setup-hook='copy-in ./deb-cache /var/cache/apt/archives/'",
                 "--customize-hook='copy-out /var/cache/apt/archives ./deb-cache'",
                 # end machinery
