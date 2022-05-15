@@ -42,8 +42,6 @@ def main():
                 "--setup-hook=mkdir -p \"$1\"/var/cache/apt/archives/",
                 "--setup-hook=copy-in " + str(deb_cache) + " /var/cache/apt/archives/",
                 "--customize-hook=copy-out /var/cache/apt/archives " + str(deb_cache),
-                "--customize-hook=rm " + str(deb_cache / "partial"),
-                "--customize-hook=rm " + str(deb_cache / "lock"),
                 # end machinery
                 "--variant=buildd",
                 "--mode=unshare",
@@ -118,6 +116,13 @@ def main():
         Path("./rootfs.tar.zst").write_bytes(
             pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
         )
+
+    # Remove uncachable files
+    lockfile = deb_cache / 'lock'
+    lockfile.unlink(missing_ok)
+
+    partialfile = deb_cache / 'partialfile'
+    partialfile.unlink(missing_ok)
 
 
 if __name__ == "__main__":
