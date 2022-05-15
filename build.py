@@ -42,14 +42,15 @@ def main():
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache
                 "--skip=download/empty",
+                "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/gcc*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--setup-hook=ls -lah \"$1\"/var/cache/apt/archives/",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
-                "--variant=essential",
+                "--variant=custom",
                 #"--include=build-essential,python3,cmake,ninja-build,ca-certificates",
-                #"--include=?priority(required)",
+                "--include=?priority(required)",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",
                 tfile,
