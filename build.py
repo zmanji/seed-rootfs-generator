@@ -41,7 +41,7 @@ def main():
                 "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=copy-in " + str(deb_cache) + " /var/cache/apt/archives/",
-                "--customize-hook=copy-out /var/cache/apt/archives " + str(deb_cache),
+                "--customize-hook=copy-out /var/cache/apt/archives/ " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
                 "--mode=unshare",

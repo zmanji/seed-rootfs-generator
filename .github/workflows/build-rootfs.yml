@@ -20,7 +20,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./deb-cache
-          key: deb-cache
+          key: deb-cache-v2
 
       - name: inspect deb cache
         run: ls -lah ./deb-cache
@@ -34,6 +34,8 @@ jobs:
       - run: curl -L 'https://github.com/pantsbuild/pex/releases/download/v2.1.86/pex' > pex && chmod +x pex
       - run: ./pex --lock pex.lock --venv --include-tools -o venv.pex && PEX_TOOLS=1 ./venv.pex venv ./venv && rm ./venv.pex
       - run: sudo ./venv/bin/python3 ./build.py
+      - name: inspect deb cache
+        run: ls -lah ./deb-cache
       - run: ./venv/bin/python3 ./printnotes.py rootfs.tar.zst > notes
       - name: Bump version and push tag
         id: tag_version
