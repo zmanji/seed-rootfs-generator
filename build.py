@@ -40,11 +40,11 @@ def main():
                 "--skip=download/empty",
                 "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
-                "--setup-hook=copy-in " + str(deb_cache) + " /var/cache/apt/archives/",
+                "--setup-hook=cp " + str(deb_cache) + "/archives/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--customize-hook=copy-out /var/cache/apt/archives/ " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
-                "--mode=unshare",
+                "--mode=root",
                 "--include=python3,cmake,ninja-build,ca-certificates",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",

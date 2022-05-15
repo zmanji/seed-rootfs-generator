@@ -13,14 +13,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Make deb cache
-        run: mkdir -p ./deb-cache
+        run: mkdir -p ./deb-cache/archives/
 
       - name: Cache deb files
         id: cache-debs
         uses: actions/cache@v3
         with:
           path: ./deb-cache
-          key: deb-cache-v2
+          key: deb-cache-${{ github.sha }}
+        restore-keys: |
+          deb-cache-
 
       - name: inspect deb cache
         run: ls -lah ./deb-cache
