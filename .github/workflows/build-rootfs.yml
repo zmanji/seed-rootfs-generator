@@ -27,8 +27,7 @@ jobs:
           restore-keys: |
             deb-cache-v3-
 
-      - name: inspect deb cache
-        run: ls -lah ./deb-cache/archives
+      - run: tree ./deb-cache/
 
       # Import Debian Bullseye Key 0x605C66F00D6C9793 for apt on Ubuntu to
       # verify packages
@@ -40,7 +39,7 @@ jobs:
       - run: ./pex -v --lock pex.lock --venv --include-tools -o venv.pex && PEX_TOOLS=1 ./venv.pex venv ./venv && rm ./venv.pex
       - run: ./venv/bin/python3 ./build.py
       - name: inspect deb cache
-        run: ls -lah ./deb-cache/archives
+        run: ls -lah ./deb-cache/
       - run: ./venv/bin/python3 ./printnotes.py rootfs.tar.zst > notes
       - name: Bump version and push tag
         id: tag_version
