@@ -120,7 +120,7 @@ def main():
         print("Creating compressed tarball...")
 
         d = {
-            pyzstd.CParameter.compressionLevel: 15,
+            pyzstd.CParameter.compressionLevel: 16,
             pyzstd.CParameter.contentSizeFlag: 1,
             pyzstd.CParameter.checksumFlag: 1,
         }
