@@ -28,7 +28,7 @@ jobs:
             deb-cache-
 
       - name: inspect deb cache
-        run: ls -lah ./deb-cache
+        run: ls -lah ./deb-cache/archives
 
       # Import Debian Bullseye Key 0x605C66F00D6C9793 for apt on Ubuntu to
       # verify packages
