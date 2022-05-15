@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Make deb cache
+        run: mkdir -p ./deb-cache
+
       - name: Cache deb files
         id: cache-debs
         uses: actions/cache@v3
@@ -19,8 +22,9 @@ jobs:
           path: ./deb-cache
           key: deb-cache
 
-      - name: Debug inspect cache
-        run: ls -lah ./deb-cache || true
+      - name: inspect deb cache
+        run: ls -lah ./deb-cache
+
       # Import Debian Bullseye Key 0x605C66F00D6C9793 for apt on Ubuntu to
       # verify packages
       - run: sudo cp ./605C66F00D6C9793.asc /etc/apt/trusted.gpg.d/
