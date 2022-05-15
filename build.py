@@ -33,8 +33,7 @@ def main():
             [
                 "./mmdebstrap/mmdebstrap",
                 "--variant=buildd",
-                # Note cannot use unshare on github actions inside a docker
-                # container ?
+                "--mode=unshare",
                 "--include=python3,cmake,ninja-build,ca-certificates",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",
