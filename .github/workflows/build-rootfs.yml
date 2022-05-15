@@ -33,6 +33,5 @@ jobs:
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body_path: ./notes
           files: |
-            rootfs.tar.gz
             rootfs.tar.zst
 
