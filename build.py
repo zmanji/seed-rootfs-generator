@@ -45,7 +45,7 @@ def main():
                 "--setup-hook=ls -lah \"$1\"/var/cache/apt/archives/",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
-                "--variant=apt",
+                "--variant=essential",
                 "--include=build-essential,python3,cmake,ninja-build,ca-certificates",
                 "--include=?priority(required)",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
