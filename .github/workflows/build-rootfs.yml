@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Make deb cache
-        run: mkdir -p ./deb-cache/archives/
+        run: mkdir -p ./deb-cache/
 
       - name: install packages
         run: sudo apt install fakechroot fakeroot tree
@@ -23,9 +23,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./deb-cache
-          key: deb-cache-${{ github.sha }}
+          key: deb-cache-v3-${{ github.sha }}
           restore-keys: |
-            deb-cache-
+            deb-cache-v3-
 
       - name: inspect deb cache
         run: ls -lah ./deb-cache/archives

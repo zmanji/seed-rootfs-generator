@@ -40,8 +40,8 @@ def main():
                 "--skip=download/empty",
                 "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
-                "--setup-hook=cp " + str(deb_cache) + "/archives/*.deb \"$1\"/var/cache/apt/archives/ || true",
-                "--customize-hook=rm -rf " + str(deb_cache) +  "/archives/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
+                "--setup-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
+                "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
                 "--include=python3,cmake,ninja-build,ca-certificates",
