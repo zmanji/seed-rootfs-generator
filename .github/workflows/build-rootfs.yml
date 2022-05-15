@@ -21,8 +21,8 @@ jobs:
         with:
           path: ./deb-cache
           key: deb-cache-${{ github.sha }}
-        restore-keys: |
-          deb-cache-
+          restore-keys: |
+            deb-cache-
 
       - name: inspect deb cache
         run: ls -lah ./deb-cache
