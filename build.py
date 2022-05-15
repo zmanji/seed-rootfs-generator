@@ -48,8 +48,8 @@ def main():
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
                 "--variant=essential",
-                "--include=build-essential,python3,cmake,ninja-build,ca-certificates",
-                "--include=?priority(required)",
+                #"--include=build-essential,python3,cmake,ninja-build,ca-certificates",
+                #"--include=?priority(required)",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",
                 tfile,
