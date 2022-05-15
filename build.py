@@ -12,16 +12,22 @@ from pathlib import Path
 
 import pyzstd
 
-# TODO(zmanji): Use mirror:// protocol of apt
 APT_SOURCE = """
-# deb https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ bullseye main
-deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
+deb mirror+file:/etc/apt/mirrors.txt bullseye main
+"""
+
+APT_MIRROR_LIST = """
+https://debian.notset.fr/snapshot/archive/debian/20220510T155316Z/ priority:1 
+https://snapshot.debian.org/archive/debian/20220510T155316Z/ priority:2
 """
 
 
 def main():
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
+        mirror_list = Path(tdir + "/mirrors.txt")
+        mirror_list.write_bytes(APT_MIRROR_LIST.encode())
+        copy_mirror_hook = '--setup-hook=mkdir -p "$1/etc/apt/" && cp {} "$1/etc/apt/mirrors.txt"'.format(str(mirror_list))
 
         sources = Path(tdir + "/sources.list")
         sources.write_bytes(APT_SOURCE.encode())
@@ -37,6 +43,7 @@ def main():
                 # container ?
                 "--include=python3,cmake,ninja-build,ca-certificates",
                 "--hook-dir=./mmdebstrap/hooks/eatmydata",
+                copy_mirror_hook,
                 "bullseye",
                 tfile,
                 str(sources),
