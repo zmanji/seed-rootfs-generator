@@ -42,6 +42,8 @@ def main():
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
                 # enough for a speedup.
+                "--skip=essential/unlink",
+                "-skip=download/empty",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/base-files_*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
@@ -60,6 +62,9 @@ def main():
             check=True,
             env=e,
         )
+
+        print("Filtering tarball...")
+
         original = tarfile.open(name=tfile)
         buffer = io.BytesIO()
         new = tarfile.open(
@@ -122,6 +127,7 @@ def main():
         Path("./rootfs.tar.zst").write_bytes(
             pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
         )
+        print("Done...")
 
 
 if __name__ == "__main__":
