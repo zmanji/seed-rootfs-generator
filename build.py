@@ -33,6 +33,13 @@ def main():
             [
                 "./mmdebstrap/mmdebstrap",
                 "--verbose",
+                # Machinery to preserve the .debs downloaded so they can be
+                # synced in the cache
+                "--skip=download/empty",
+                "--skip=essential/unlink",
+                "--setup-hook='copy-in ./deb-cache /var/cache/apt/archives/'",
+                "--customize-hook='copy-out /var/cache/apt/archives ./deb-cache'",
+                # end machinery
                 "--variant=buildd",
                 "--mode=unshare",
                 "--include=python3,cmake,ninja-build,ca-certificates",
