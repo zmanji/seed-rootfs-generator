@@ -22,6 +22,9 @@ deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 def main():
     deb_cache = Path("./deb-cache")
 
+    proxysolver = Path("./proxysolver")
+    proxysolver.symlink_to('./mmdebstrap/proxysolver')
+
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
 
