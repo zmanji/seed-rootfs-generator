@@ -32,6 +32,7 @@ def main():
         p = subprocess.run(
             [
                 "./mmdebstrap/mmdebstrap",
+                "--verbose",
                 "--variant=buildd",
                 "--mode=unshare",
                 "--include=python3,cmake,ninja-build,ca-certificates",
