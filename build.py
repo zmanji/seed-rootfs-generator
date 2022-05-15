@@ -41,7 +41,7 @@ def main():
                 "--skip=essential/unlink",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/archives/*.deb \"$1\"/var/cache/apt/archives/ || true",
-                "--customize-hook=copy-out /var/cache/apt/archives/ " + str(deb_cache),
+                "--customize-hook=rm -rf " + str(deb_cache) +  "/archives/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
                 "--include=python3,cmake,ninja-build,ca-certificates",
@@ -115,13 +115,6 @@ def main():
         Path("./rootfs.tar.zst").write_bytes(
             pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
         )
-
-    # Remove uncachable files
-    lockfile = deb_cache / "archives" / "lock"
-    lockfile.unlink(missing_ok=True)
-
-    partialdir = deb_cache / "archives" / "partial"
-    partialdir.rmdir()
 
 
 if __name__ == "__main__":
