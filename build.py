@@ -119,10 +119,10 @@ def main():
 
     # Remove uncachable files
     lockfile = deb_cache / 'lock'
-    lockfile.unlink(missing_ok)
+    lockfile.unlink(missing_ok=True)
 
     partialfile = deb_cache / 'partialfile'
-    partialfile.unlink(missing_ok)
+    partialfile.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
