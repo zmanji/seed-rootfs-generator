@@ -43,7 +43,7 @@ def main():
                 # synced in the cache. This doesn't preserve 'essential' debs but good
                 # enough for a speedup.
                 "--skip=essential/unlink",
-                "-skip=download/empty",
+                "--skip=download/empty",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/base-files_*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
