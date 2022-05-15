@@ -121,8 +121,8 @@ def main():
     lockfile = deb_cache / 'archives' / 'lock'
     lockfile.unlink(missing_ok=True)
 
-    partialfile = deb_cache / 'archives' / 'partial'
-    partialfile.unlink(missing_ok=True)
+    partialdir = deb_cache / 'archives' / 'partial'
+    partialdir.rmdir()
 
 
 if __name__ == "__main__":
