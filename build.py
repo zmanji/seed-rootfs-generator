@@ -39,7 +39,7 @@ def main():
                 # synced in the cache
                 "--skip=download/empty",
                 "--skip=essential/unlink",
-                "--setup-hook=mkdir -p \"$1\"/var/cache/apt/archives/",
+                '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=copy-in " + str(deb_cache) + " /var/cache/apt/archives/",
                 "--customize-hook=copy-out /var/cache/apt/archives " + str(deb_cache),
                 # end machinery
@@ -118,10 +118,10 @@ def main():
         )
 
     # Remove uncachable files
-    lockfile = deb_cache / 'archives' / 'lock'
+    lockfile = deb_cache / "archives" / "lock"
     lockfile.unlink(missing_ok=True)
 
-    partialdir = deb_cache / 'archives' / 'partial'
+    partialdir = deb_cache / "archives" / "partial"
     partialdir.rmdir()
 
 
