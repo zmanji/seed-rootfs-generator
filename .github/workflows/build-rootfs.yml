@@ -17,6 +17,8 @@ jobs:
 
       - run: sudo usermod --add-subuids 10000-75535 $USER
       - run: sudo usermod --add-subgids 10000-75535 $USER
+      - run: cat /etc/subuid
+      - run: cat /etc/subgid
 
       - run: curl -L 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo cp -a ./mmdebstrap/mmdebstrap /usr/bin/mmdebstrap
