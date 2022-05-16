@@ -25,8 +25,9 @@ def main():
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
 
-        sources = Path(tdir + "/sources.list").resolve(strict=True)
+        sources = Path(tdir + "/sources.list")
         sources.write_bytes(APT_SOURCE.encode())
+        sources = sources.resolve(strict=True)
 
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
