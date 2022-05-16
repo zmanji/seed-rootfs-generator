@@ -36,7 +36,7 @@ def main():
             [
                 "sudo",
                 "mmdebstrap",
-                "--debug",
+                "--verbose",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
                 # enough for a speedup.
@@ -45,7 +45,6 @@ def main():
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
-                "--essential-hook=ls -lah \"$1\"/var/cache/apt/archives/",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
