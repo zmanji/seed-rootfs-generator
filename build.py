@@ -78,6 +78,7 @@ def main():
         ^\./usr/share/locale/.* |
         ^\./usr/share/bash-completions/.* |
         ^\./usr/share/lintian/.* |
+        ^\./usr/share/pixmaps/.* |
         ^\./usr/share/zoneinfo/right/.* |
         ^\./usr/share/cmake-.*/Help/.* |
         ^\./var/cache/.* |
