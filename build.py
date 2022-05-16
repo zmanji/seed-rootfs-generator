@@ -34,6 +34,7 @@ def main():
         print("running mmdebstrap...", flush=True)
         p = subprocess.run(
             [
+                "sudo",
                 "mmdebstrap",
                 "--verbose",
                 "--mode=unshare",
