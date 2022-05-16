@@ -48,7 +48,7 @@ jobs:
       - run: curl -L 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       # Get pex and create venv from lock file
       - run: curl -L 'https://github.com/pantsbuild/pex/releases/download/v2.1.86/pex' > pex && chmod +x pex
-      - run: ./pex -v --lock pex.lock --venv --include-tools -o venv.pex && PEX_TOOLS=1 ./venv.pex venv ./venv && rm ./venv.pex
+      - run: ./pex -v --lock pex.lock --venv --include-tools --no-compress --sh-boot -o venv.pex && PEX_TOOLS=1 ./venv.pex -v venv ./venv && rm ./venv.pex
       - run: ./venv/bin/python3 ./build.py
       - run: ./venv/bin/python3 ./printnotes.py rootfs.tar.zst > notes
       - name: Bump version and push tag
