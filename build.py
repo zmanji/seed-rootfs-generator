@@ -47,7 +47,7 @@ def main():
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
                 "--variant=buildd",
-                "--include=python3,cmake,ninja-build,ca-certificates,ccache",
+                "--include=cmake,ninja-build,ca-certificates,ccache",
                 "bullseye",
                 tfile,
                 str(sources),
