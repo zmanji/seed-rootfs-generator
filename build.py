@@ -20,15 +20,12 @@ deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 
 
 def main():
-    deb_cache = Path("./deb-cache")
-
-    # proxysolver = Path("./proxysolver")
-    # proxysolver.symlink_to('./mmdebstrap/proxysolver')
+    deb_cache = Path("./deb-cache").resolve(strict=True)
 
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
 
-        sources = Path(tdir + "/sources.list")
+        sources = Path(tdir + "/sources.list").resolve(strict=True)
         sources.write_bytes(APT_SOURCE.encode())
 
         e = os.environ.copy()
@@ -37,8 +34,7 @@ def main():
         p = subprocess.run(
             [
                 "sudo",
-                #                "./mmdebstrap/mmdebstrap",
-                "mmdebstrap",
+                "./mmdebstrap",
                 "--debug",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
@@ -46,7 +42,7 @@ def main():
                 "--skip=essential/unlink",
                 "--skip=download/empty",
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
-                "--setup-hook=cp " + str(deb_cache) + "/base-files_*.deb \"$1\"/var/cache/apt/archives/ || true",
+                "--setup-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=ls -lah \"$1\"/var/cache/apt/archives/",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
@@ -60,6 +56,7 @@ def main():
             stdin=subprocess.DEVNULL,
             text=True,
             check=True,
+            cwd="./mmdebstrap",
             env=e,
         )
 
