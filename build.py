@@ -58,7 +58,7 @@ def main():
             env=e,
         )
 
-        print("Filtering tarball...")
+        print("Filtering tarball...", flush=True)
 
         original = tarfile.open(name=tfile)
         buffer = io.BytesIO()
@@ -114,7 +114,7 @@ def main():
         new.close()
         original.close()
 
-        print("Creating compressed tarball...")
+        print("Creating compressed tarball...", flush=True)
 
         d = {
             pyzstd.CParameter.compressionLevel: 16,
@@ -124,7 +124,7 @@ def main():
         Path("./rootfs.tar.zst").write_bytes(
             pyzstd.richmem_compress(buffer.getvalue(), level_or_option=d),
         )
-        print("Done...")
+        print("Done...", flush=True)
 
 
 if __name__ == "__main__":
