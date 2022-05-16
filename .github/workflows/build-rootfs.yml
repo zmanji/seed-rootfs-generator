@@ -26,7 +26,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./.pex
-          key: pex-root-cache
+          key: pex-root-cache-${{ github.sha }}
+          restore-keys: |
+            pex-root-cache-
 
       - name: Cache deb files
         id: cache-debs
