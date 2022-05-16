@@ -29,13 +29,16 @@ def main():
         sources.write_bytes(APT_SOURCE.encode())
         sources = sources.resolve(strict=True)
 
+        mmdebstrapdir = Path("./mmdebstrap").resolve(strict=true)
+        mmdebstrapbin = mmdebstrapdir / "mmdebstrap"
+
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
         print("running mmdebstrap...", flush=True)
         p = subprocess.run(
             [
                 "sudo",
-                "./mmdebstrap",
+                str(mmdebstrapbin),
                 "--debug",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
@@ -57,7 +60,7 @@ def main():
             stdin=subprocess.DEVNULL,
             text=True,
             check=True,
-            cwd="./mmdebstrap",
+            cwd=mmdebstrapdir,
             env=e,
         )
 
