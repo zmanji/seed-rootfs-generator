@@ -35,7 +35,7 @@ def main():
         p = subprocess.run(
             [
                 "mmdebstrap",
-                "--verbose",
+                "--debug",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
                 # enough for a speedup.
