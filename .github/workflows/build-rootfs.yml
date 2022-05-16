@@ -21,6 +21,13 @@ jobs:
       - name: Make deb cache
         run: mkdir -p ./deb-cache/
 
+      - name: Cache pex root
+        id: cache-pex-root
+        uses: actions/cache@v3
+        with:
+          path: ./.pex
+          key: pex-root-cache
+
       - name: Cache deb files
         id: cache-debs
         uses: actions/cache@v3
