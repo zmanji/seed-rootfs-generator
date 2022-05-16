@@ -25,7 +25,7 @@ jobs:
         id: cache-pex-root
         uses: actions/cache@v3
         with:
-          path: ./.pex
+          path: ~/.pex
           key: pex-root-cache-${{ github.sha }}
           restore-keys: |
             pex-root-cache-
