@@ -103,6 +103,7 @@ def main():
             # broken symlinks after? Audit for issues?
             if r.search(i.name):
                 continue
+            i.mtime = 0
             if i.isfile():
                 f = original.extractfile(i)
             else:
