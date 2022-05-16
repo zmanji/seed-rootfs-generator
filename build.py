@@ -34,8 +34,10 @@ def main():
         print("running mmdebstrap...", flush=True)
         p = subprocess.run(
             [
+                "sudo",
                 "mmdebstrap",
                 "--debug",
+                "--mode=unshare",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
                 # enough for a speedup.
@@ -46,7 +48,6 @@ def main():
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--customize-hook=rm -rf " + str(deb_cache) +  "/* && " + " cp \"$1\"/var/cache/apt/archives/*.deb " + str(deb_cache),
                 # end machinery
-                "--mode=unshare",
                 "--variant=buildd",
                 "--include=cmake,ninja-build,ca-certificates,ccache",
                 "bullseye",
