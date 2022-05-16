@@ -29,7 +29,7 @@ def main():
         sources.write_bytes(APT_SOURCE.encode())
         sources = sources.resolve(strict=True)
 
-        mmdebstrapdir = Path("./mmdebstrap").resolve(strict=true)
+        mmdebstrapdir = Path("./mmdebstrap").resolve(strict=True)
         mmdebstrapbin = mmdebstrapdir / "mmdebstrap"
 
         e = os.environ.copy()
