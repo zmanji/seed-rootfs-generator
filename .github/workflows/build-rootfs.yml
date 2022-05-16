@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: install packages
-        run: sudo apt install -y tree apt-utils
+        run: sudo apt install -y tree apt-utils util-linux uidmap
       - run: curl -L 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo cp -a ./mmdebstrap/mmdebstrap /usr/bin/mmdebstrap
       - run: sudo cp -a ./mmdebstrap/proxysolver /usr/lib/apt/solvers/mmdebstrap-dump-solution
