@@ -22,9 +22,6 @@ deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 def main():
     deb_cache = Path("./deb-cache").resolve(strict=True)
 
-    mmdebstrapdir = Path("./mmdebstrap").resolve(strict=True)
-    mmdebstrapbin = mmdebstrapdir / "mmdebstrap"
-
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
 
@@ -38,7 +35,7 @@ def main():
         p = subprocess.run(
             [
                 "sudo",
-                str(mmdebstrapbin),
+                "mmdebstrap",
                 "--debug",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
@@ -60,7 +57,6 @@ def main():
             stdin=subprocess.DEVNULL,
             text=True,
             check=True,
-            cwd=mmdebstrapdir,
             env=e,
         )
 

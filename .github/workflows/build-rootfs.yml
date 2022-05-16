@@ -17,6 +17,7 @@ jobs:
 
       - name: install packages
         run: sudo apt install -y tree apt-utils
+      - run: wget 'https://snapshot.debian.org/archive/debian/20220510T155316Z/pool/main/m/mmdebstrap/mmdebstrap_0.8.6-2_all.deb' && sudo apt install ./mmdebstrap*.deb
       - name: Cache deb files
         id: cache-debs
         uses: actions/cache@v3
