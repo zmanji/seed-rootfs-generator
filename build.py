@@ -36,7 +36,7 @@ def main():
             [
                 "sudo",
                 "mmdebstrap",
-                "--debug",
+                "--verbose",
                 "--mode=unshare",
                 # Machinery to preserve the .debs downloaded so they can be
                 # synced in the cache. This doesn't preserve 'essential' debs but good
