@@ -81,6 +81,7 @@ def main():
         ^\./usr/share/zoneinfo/right/.* |
         ^\./usr/share/cmake-.*/Help/.* |
         ^\./var/cache/.* |
+        ^\./etc/ld.so.cache$ |
 
         # These leak from the host
         # See https://gitlab.mister-muffin.de/josch/mmdebstrap/issues/26
