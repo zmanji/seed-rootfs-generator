@@ -22,15 +22,15 @@ deb https://snapshot.debian.org/archive/debian/20220510T155316Z/ bullseye main
 def main():
     deb_cache = Path("./deb-cache").resolve(strict=True)
 
+    mmdebstrapdir = Path("./mmdebstrap").resolve(strict=True)
+    mmdebstrapbin = mmdebstrapdir / "mmdebstrap"
+
     with tempfile.TemporaryDirectory() as tdir:
         tfile = tdir + "/bullseye.tar"
 
         sources = Path(tdir + "/sources.list")
         sources.write_bytes(APT_SOURCE.encode())
         sources = sources.resolve(strict=True)
-
-        mmdebstrapdir = Path("./mmdebstrap").resolve(strict=True)
-        mmdebstrapbin = mmdebstrapdir / "mmdebstrap"
 
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
