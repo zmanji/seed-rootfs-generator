@@ -53,7 +53,6 @@ def main():
                 # end machinery
                 "--variant=buildd",
                 "--include=python3,cmake,ninja-build,ca-certificates",
-                "--hook-dir=./mmdebstrap/hooks/eatmydata",
                 "bullseye",
                 tfile,
                 str(sources),
