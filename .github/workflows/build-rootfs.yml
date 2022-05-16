@@ -39,8 +39,6 @@ jobs:
           restore-keys: |
             deb-cache-v3-
 
-      - run: tree ./deb-cache/
-
       # Import Debian Bullseye Key 0x605C66F00D6C9793 for apt on Ubuntu to
       # verify packages
       - run: sudo cp ./605C66F00D6C9793.asc /etc/apt/trusted.gpg.d/
