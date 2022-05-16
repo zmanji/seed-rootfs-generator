@@ -13,9 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: install packages
-        run: sudo apt install -y tree apt-utils util-linux uidmap
-
-      - run: sudo usermod --add-subgids 200000-265536 docker
+        run: sudo apt install -y tree apt-utils
 
       - run: curl -L 'https://gitlab.mister-muffin.de/josch/mmdebstrap/archive/0.8.6.tar.gz' | tar -xz
       - run: sudo cp -a ./mmdebstrap/mmdebstrap /usr/bin/mmdebstrap
