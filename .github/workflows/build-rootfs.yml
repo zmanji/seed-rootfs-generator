@@ -15,8 +15,8 @@ jobs:
       - name: install packages
         run: sudo apt install -y tree apt-utils util-linux uidmap
 
-      - run: sudo usermod --add-subuids 10000-75535 $USER
-      - run: sudo usermod --add-subgids 10000-75535 $USER
+      - run: sudo usermod --add-subuids 200000-75535 $USER
+      - run: sudo usermod --add-subgids 200000-75535 $USER
       - run: cat /etc/subuid
       - run: cat /etc/subgid
 
