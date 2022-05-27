@@ -12,12 +12,14 @@ from pathlib import Path
 
 import pyzstd
 
-# TODO(zmanji): Use mirror:// protocol of apt
-# TODO(zmanji): Use debian.notset.fr/snapshot
 APT_SOURCE = """
-deb https://snapshot.debian.org/archive/debian/20220515T152741Z/ bullseye main
+deb mirror+file:/etc/apt/mirrors.txt bullseye main
 """
 
+APT_MIRRORS_TXT = """
+https://debian.notset.fr/snapshot/archive/debian/20220526T155509Z/ priority:1
+https://snapshot.debian.org/archive/debian/20220526T155509Z/ priority:2
+"""
 
 def main():
     deb_cache = Path("./deb-cache").resolve(strict=True)
@@ -28,6 +30,11 @@ def main():
         sources = Path(tdir + "/sources.list")
         sources.write_bytes(APT_SOURCE.encode())
         sources = sources.resolve(strict=True)
+
+
+        mirrors = Path(tdir + "/mirrors.txt")
+        mirrors.write_bytes(APT_MIRRORS_TXT.encode())
+        mirrors = mirrors.resolve(strict=True)
 
         e = os.environ.copy()
         e["SOURCE_DATE_EPOCH"] = "0"
@@ -43,6 +50,8 @@ def main():
                 # enough for a speedup.
                 "--skip=essential/unlink",
                 "--skip=download/empty",
+                '--setup-hook=mkdir -p "$1"/etc/apt/',
+                '--setup-hook=cp ' + str(mirrors) + ' "$1"/etc/apt/',
                 '--setup-hook=mkdir -p "$1"/var/cache/apt/archives/',
                 "--setup-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
                 "--essential-hook=cp " + str(deb_cache) + "/*.deb \"$1\"/var/cache/apt/archives/ || true",
