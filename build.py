@@ -12,10 +12,8 @@ from pathlib import Path
 
 import pyzstd
 
-# TODO(zmanji): Use mirror:// protocol of apt
-# TODO(zmanji): Use debian.notset.fr/snapshot
 APT_SOURCE = """
-deb https://snapshot.debian.org/archive/debian/20220515T152741Z/ bullseye main
+deb https://debian.notset.fr/snapshot/archive/debian/20220526T155509Z/ bullseye main
 """
 
 
